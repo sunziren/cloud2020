@@ -1,0 +1,21 @@
+server:
+  port: 80
+
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka #集群版
+
+#设置openfeign客户端默认超时时间(openfeign内部集成了ribbon)
+ribbon:
+  #建立连接的超时时间
+  ConnectTimeout: 5000
+  #连接建立后，读取数据的超时时间
+  ReadTimeout: 5000
+
+logging:
+  level:
+    #openFeign日志以什么级别监控什么接口
+    com.atguigu.springcloud.services.PaymentFeignService: debug
+
