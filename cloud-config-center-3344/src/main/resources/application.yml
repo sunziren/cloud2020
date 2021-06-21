@@ -8,14 +8,32 @@ spring:
     config:
       server:
         git:
-          uri: git@github.com:sunziren/springcloud-config.git #github上面仓库名字
+          username: sunziren
+          password: szr9507641247
+          #uri: git@github.com:sunziren/springcloud-config.git #github上面仓库名字
+          uri: https://github.com/sunziren/springcloud-config.git
+          timeout: 60
           #搜索目录
           search-paths:
             - springcloud-config
       #读取分支
       label: master
+  #RabbitMQ相关配置 15672是web管理端口，5672是MQ连接端口
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
 
 eureka:
   client:
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka #集群版
+
+#RabbitMQ相关配置，暴露bus配置的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
